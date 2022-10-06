@@ -7,4 +7,4 @@ const authUserSchema = new Schema({
     passwordHash: String
 })
 
-export default mongoose.model('AuthUser', new authUserSchema )
+export default mongoose.model('AuthUser', authUserSchema )

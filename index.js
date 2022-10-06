@@ -1,5 +1,3 @@
-import {config} from 'dotenv'
-config()
 
 import express from 'express'
 import usersController from './controllers/users.js'
@@ -18,6 +16,19 @@ app.get('/', (req, res) => {
 app.post('/register', (req, res) => {
     usersController.registerUser(req.body)
     res.sendStatus(201)
+})
+
+app.get('/registrered_users', async (req, res) => {
+    res.send(await usersController.getRegisteredUsers())
+})
+
+app.post('/login', async (req, res) => {
+    const result = await usersController.validateUser(req.body)
+    if (!result) {
+        res.status(403).send({error: 'Authentication failed'})
+        return
+    }
+    res.send(result)
 })
 
 app.listen(port, () => {
