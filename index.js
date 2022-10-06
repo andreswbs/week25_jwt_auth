@@ -2,6 +2,12 @@
 import express from 'express'
 import usersController from './controllers/users.js'
 
+const {authenticateToken} = usersController
+
+import * as crypto from 'crypto'
+
+crypto.randomBytes(64)
+
 const app = express()
 const port = process.env.PORT || 8080;
 
@@ -18,7 +24,7 @@ app.post('/register', (req, res) => {
     res.sendStatus(201)
 })
 
-app.get('/registrered_users', async (req, res) => {
+app.get('/registrered_users', authenticateToken, async (req, res) => {
     res.send(await usersController.getRegisteredUsers())
 })
 
