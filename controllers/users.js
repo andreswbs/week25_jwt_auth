@@ -31,7 +31,7 @@ const getRegisteredUsers = async () => {
 
 function generateAccessToken(username) {
     return jwt.sign(
-        {username}, 
+        {username, shoppingCart: { products: ['mouse', 'tablet'] }}, 
         process.env.TOKEN_SECRET, 
         { expiresIn: '1800s' }
     );
