@@ -56,7 +56,12 @@ const validateUser = async ({username, password}) => {
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    let token = authHeader && authHeader.split(' ')[1]
+
+    if (!token) {
+        token = req.cookies.access_token?.token
+        console.log(token)
+    }
   
     if (token == null) return res.sendStatus(401)
   

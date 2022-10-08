@@ -9,10 +9,10 @@
 <body>
     <h1>Log in</h1>
 
-    <div>
-        <input type="text" placeholder="username" id="username">
-        <input type="password" placeholder="password" id="password">
-        <button>Log in</button>
-    </div>
+    <form action="/users_list", method="post">
+        <input type="text" placeholder="username" name="username" id="username">
+        <input type="password" placeholder="password" name="password" id="password">
+        <input type="submit" value="Log in">
+    </form>
 </body>
 </html>
